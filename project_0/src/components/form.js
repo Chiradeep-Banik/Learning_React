@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Nav from "./nav";
 
 function Form(props) {
     var [name, name_change] = useState('');
@@ -17,17 +18,20 @@ function Form(props) {
             alert('Please enter both fields');
             return;
         }
-        console.log(name, pass);
         name_change('');
         pass_change('');
     }
     return (
-        <form>
-            <input id="name" type="text" value={name} onChange={name_entered} placeholder={props.place} />
-            <input id="pass" type="password" value={pass} onChange={password_entered} /><br />
-            <button type="submit" onClick={submited}>Submit</button><br />
-            {props.children}
-        </form>
+        <div>
+            <Nav />
+            <form>
+                <input id="name" type="text" value={name} onChange={name_entered} placeholder={props.place} />
+                <input id="pass" type="password" value={pass} onChange={password_entered} /><br />
+                <button type="submit" onClick={submited}>Submit</button><br />
+                {props.children}
+            </form>
+            <h1>Name:{name} Pass:{pass}</h1>
+        </div>
     );
 }
 
