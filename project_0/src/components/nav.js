@@ -8,6 +8,7 @@ function Nav() {
 			<li><Link to="/">Home</Link></li>
 			<li><Link to="/form">Form</Link></li>
 			<li><Link to="/hooks">Hooks</Link></li>
+			<li><Link to="/todo">TODO</Link></li>
 			<li><Link to="/list/:arr">List</Link></li>
 		</nav>
 	);
