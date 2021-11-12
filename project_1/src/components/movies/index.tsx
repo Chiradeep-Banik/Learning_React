@@ -1,30 +1,38 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Movie from "./movie";
+import { FetchResponse } from "../../react-app-env";
+import { moveCursor } from "readline";
 
 export default function Movies() {
     var movies = ['dead poets society', 'Shawshank Redemption', 'Ali', 'Lolita', 'coco'];
-    var container_ref = useRef(null);
-    var [title, setMovieTitle] = useState('');
-    var [plot, setMoviePlot] = useState('');
-    var [genre, setMovieGenre] = useState('');
+    var movieArr: FetchResponse[] = [];
+    var [moviesRes, setMovies] = useState(movieArr);
     useEffect(() => {
         movies.forEach(movie => {
             var url = `${process.env.REACT_APP_API_URL}&t=${movie}&plot=full`;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    setMoviePlot(data.Plot);
-                    setMovieTitle(data.Title);
-                    setMovieGenre(data.Genre);
+                    console.log(data);
+                    console.log(moviesRes);
+                    setMovies(prevState => {
+                        prevState.push(data as FetchResponse)
+                        return prevState;
+                    });
+                    console.log(moviesRes.length);
                 }).catch(error => console.log(error));
-            if (container_ref.current !== null) {
-                console.log(container_ref.current);
-                // container_ref.current.appendChild(<Movie title={title} plot={plot} genre={genre} />);
-            }
         })
     }, [])
-
-    return (
-        <div ref={container_ref}></div>
-    );
+    if (moviesRes.length === 0) {
+        return <div>Loading...</div>
+    } else {
+        return (
+            <div>
+                {moviesRes.map((movie, index) => {
+                    return <Movie key={index} data={movie} />
+                })}
+                {/* <div>{moviesRes[0].title}</div> */}
+            </div>
+        );
+    }
 }

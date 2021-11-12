@@ -19,7 +19,8 @@
   "scripts": {
     "start": "export NODE_OPTIONS=--openssl-legacy-provider;DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider;DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "eject": "export NODE_OPTIONS=--openssl-legacy-provider;DISABLE_ESLINT_PLUGIN=true react-scripts eject"
+    "eject": "export NODE_OPTIONS=--openssl-legacy-provider;DISABLE_ESLINT_PLUGIN=true react-scripts eject",
+    "run": "npm run build; npx serve build/"
   },
   "eslintConfig": {
     "extends": [
