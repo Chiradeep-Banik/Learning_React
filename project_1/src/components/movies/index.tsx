@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./movie";
-import { FetchResponse } from "../../react-app-env";
-import { moveCursor } from "readline";
+import './style.css'
+let movies = ['dead poets society', 'Shawshank Redemption', 'Ali', 'Lolita', 'coco', 'sex', 'bhi'];
 
 export default function Movies() {
-    var movies = ['dead poets society', 'Shawshank Redemption', 'Ali', 'Lolita', 'coco'];
-    var movieArr: FetchResponse[] = [];
-    var [moviesRes, setMovies] = useState(movieArr);
+    let movieArr: any[] = [];
+    let movieArr2: any[] = [];
+    const [moviesRes, setMovies] = useState(movieArr2);
+    const [toRender, setRender] = useState(false);
     useEffect(() => {
-        movies.forEach(movie => {
-            var url = `${process.env.REACT_APP_API_URL}&t=${movie}&plot=full`;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    console.log(moviesRes);
-                    setMovies(prevState => {
-                        prevState.push(data as FetchResponse)
-                        return prevState;
-                    });
-                    console.log(moviesRes.length);
-                }).catch(error => console.log(error));
-        })
-    }, [])
+        const getMovies = async () => {
+            for (let i = 0; i < movies.length; i++) {
+                var url = `${process.env.REACT_APP_API_URL}&t=${movies[i]}&page=1`;
+                let movie_data = await fetch(url);
+                let data = await movie_data.json();
+                console.log(data);
+                movieArr.push(data);
+            }
+            console.log(movieArr, 'inside useEffect');
+            setMovies(movieArr);
+        };
+        getMovies().then(() => { setRender(true) }).catch(err => console.log(err));
+        console.log(moviesRes[0]);
+    }, [toRender, movies]);
+
     if (moviesRes.length === 0) {
         return <div>Loading...</div>
     } else {
+        { console.log(moviesRes.length, "=== Inside the last else", moviesRes) }
         return (
-            <div>
+            <div className='Movies_container'>
                 {moviesRes.map((movie, index) => {
-                    return <Movie key={index} data={movie} />
+                    return <Movie key={index} poster={movie['Poster']} ratings={movie['imdbRating']} title={movie['Title']} plot={movie['Plot']} />
                 })}
-                {/* <div>{moviesRes[0].title}</div> */}
             </div>
         );
     }

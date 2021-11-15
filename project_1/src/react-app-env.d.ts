@@ -25,7 +25,10 @@ export interface FetchResponse {
     website: string | null;
 }
 export interface ReactMovieCard {
-    data: FetchResponse;
+    ratings: Rating[];
+    title: string;
+    plot: string;
+    poster: string | null;
 }
 
 export interface Rating {
