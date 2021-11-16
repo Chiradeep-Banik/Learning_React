@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/header';
 import Movies from './components/movies';
 
 function App() {
+	const [searchMovie, setSearchMovie] = useState('');
 	return (
 		<div>
-			<Header />
-			<h1>Hello World</h1>
-			<Movies />
+			<Header mov={searchMovie} setMov={setSearchMovie} />
+			<Movies mov={searchMovie} setMov={setSearchMovie} />
 		</div>
 	);
 }
