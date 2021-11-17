@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     mode:'development',
     output: {
-        path: path.join(__dirname, "/dist"),
+        path: path.join(__dirname, "/build"),
         filename: "bundle.js",
     },
     devServer: {
