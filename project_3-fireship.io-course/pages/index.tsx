@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 
 export default function Home() {
 	return (<div>
-		<NavBar user='' userName='' />
+		<NavBar />
 		<Link href={{
 			pathname: '/[username]',
 			query: {

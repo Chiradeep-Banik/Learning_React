@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../lib/context';
+import { auth } from '../lib/firebase';
 
-
-export default function NavBar({ user, userName }) {
-    // const user: User = {
-    //     photoUrl: ''
-    // };
-    // const userName: string = null;
+export default function NavBar({ }) {
+    let { user, userName } = useContext(UserContext);
+    console.log(user, userName);
+    useEffect(() => {
+        console.log(user);
+    }, [user, userName]);
 
     return (
         <nav className='navbar'>
@@ -18,13 +21,18 @@ export default function NavBar({ user, userName }) {
                 {user && (
                     <>
                         <li className='push-left'>
+                            <Link href='/'>
+                                <SignOutButton />
+                            </Link>
+                        </li>
+                        <li>
                             <Link href='/admin'>
                                 <button className="btn-blue">Write Posts</button>
                             </Link>
                         </li>
                         <li>
                             <Link href={`/${userName}`}>
-                                <img src={user?.photoUrl} />
+                                <img src={user.photoURL} />
                             </Link>
                         </li>
                     </>
@@ -39,5 +47,15 @@ export default function NavBar({ user, userName }) {
             </ul>
         </nav>
     );
-
 };
+
+function SignOutButton() {
+    let { user, userName } = useContext(UserContext);
+
+    function signOut() {
+        auth.signOut();
+        user = null;
+    }
+
+    return (<button onClick={signOut}>Sign Out</button>);
+}
