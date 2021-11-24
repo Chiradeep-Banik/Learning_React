@@ -1,0 +1,19 @@
+.header{
+	background-color: rgb(39, 39, 39);
+	width: 100%;
+	height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: thistle;
+}
+
+.headerElement{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.7rem;
+    margin: 1.5rem;
+    border: solid 1px white;
+    font-size: 2rem;
+}
