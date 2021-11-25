@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "create-next-app": "^12.0.4",
-    "firebase-tools": "^9.22.0"
+    "firebase-tools": "^9.22.0",
+    "serve": "^13.0.2"
   }
 }

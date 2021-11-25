@@ -1,0 +1,20 @@
+.containter{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding : 1.5rem;
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.card{
+    padding: 1.5rem;
+    margin: 1.5rem;
+    width:20rem;
+    text-align: center;
+    border: solid 1px black;
+    height:25rem;
+    overflow: clip;
+    cursor: pointer;
+}

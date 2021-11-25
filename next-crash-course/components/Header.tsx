@@ -1,12 +1,13 @@
-import type { NextComponentType } from 'next';
-import styles from '../styles/Header.module.css';
+import type { NextPage } from 'next';
 import Link from 'next/link';
+import headerStyles from '../styles/Header.module.css';
 
-const Header: NextComponentType = () => {
+const Header: NextPage = () => {
     return (
-        <div className={styles.header}>
-            <li className={styles.headerElement}><Link href='/'>Home</Link></li>
-            <li className={styles.headerElement}><Link href='/about'>About</Link></li>
+        <div className={headerStyles.header}>
+            <li className={headerStyles.headerElement}><Link href='/'>Home</Link></li>
+            <li className={headerStyles.headerElement}><Link href='/about'>About</Link></li>
+            <li className={headerStyles.headerElement}><Link href='/comments'>Comments</Link></li>
         </div>
     )
 }
