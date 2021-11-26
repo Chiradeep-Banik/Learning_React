@@ -1,18 +1,16 @@
-import Link from 'next/link';
+import { NextPage } from 'next';
+import HeadTag from '../components/head';
 import Loader from '../components/Loader';
 import NavBar from '../components/NavBar';
 
-export default function Home() {
+const Home: NextPage = () => {
 	return (<div>
+		<HeadTag title='NXT' />
 		<NavBar />
-		<Link href={{
-			pathname: '/[username]',
-			query: {
-				username: 'banik'
-			}
-		}}>
-			Go to banik's profile
-		</Link>
+		<h1>Home</h1>
 		<Loader show={true} />
-	</div>)
+	</div>
+	);
 }
+
+export default Home;

@@ -1,33 +1,31 @@
-import NavBar from '../components/NavBar';
 import { auth, provider } from '../lib/firebase';
 import { signInWithPopup } from 'firebase/auth'
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import Link from 'next/link';
+import type { NextPage } from 'next';
+import HeadTag from '../components/head';
 
-let EnterPage = () => {
+const EnterPage: NextPage = () => {
     let { user, userName } = useContext(UserContext);
     return (<div>
-        <NavBar />
+        {userName ? <HeadTag title={userName} /> : <HeadTag title='Enter' />}
         <main>
-            {user && (<>
-                {!userName && <UserNameForm />}
-                {userName && <SignOutButton />}
-            </>)}
+            {user && userName && <SignOutButton />}
             {!user && <SignInButton />}
-            <SignInAnonymously />
         </main>
     </div>);
 };
 
 function SignInButton() {
 
-    let { user, userName } = useContext(UserContext);
+    let { setUser, setUserName, userName } = useContext(UserContext);
 
     let signInWithGoogle = async () => {
         await signInWithPopup(auth, provider);
-        user = auth.currentUser;
-        console.log(user.photoURL);
+        setUser(auth.currentUser);
+        setUserName(auth.currentUser.displayName);
+
     };
 
     return (<button className='btn-google' onClick={signInWithGoogle}>
@@ -37,24 +35,15 @@ function SignInButton() {
 }
 
 function SignOutButton() {
-    let { user, userName } = useContext(UserContext);
+    let { setUser, setUserName } = useContext(UserContext);
 
     function signOut() {
         auth.signOut();
-        user = null;
+        setUser(null);
+        setUserName(null);
     }
 
     return (<button onClick={signOut}>Sign Out</button>);
-}
-
-function UserNameForm() {
-
-
-    return (<button>Form</button>);
-}
-function SignInAnonymously() {
-
-    return (<Link href='/'><button>Sign In Anonymously</button></Link>);
 }
 
 

@@ -1,14 +1,11 @@
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
+import { NextPage } from 'next';
+import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import { auth } from '../lib/firebase';
 
-export default function NavBar({ }) {
+const NavBar: NextPage = () => {
     let { user, userName } = useContext(UserContext);
-    console.log(user, userName);
-    useEffect(() => {
-        console.log(user);
-    }, [user, userName]);
 
     return (
         <nav className='navbar'>
@@ -21,7 +18,7 @@ export default function NavBar({ }) {
                 {user && (
                     <>
                         <li className='push-left'>
-                            <Link href='/'>
+                            <Link href='/admin'>
                                 <SignOutButton />
                             </Link>
                         </li>
@@ -50,12 +47,16 @@ export default function NavBar({ }) {
 };
 
 function SignOutButton() {
-    let { user, userName } = useContext(UserContext);
+    let { setUser, setUserName } = useContext(UserContext);
 
     function signOut() {
         auth.signOut();
-        user = null;
+        setUser(null);
+        setUserName(null);
     }
 
-    return (<button onClick={signOut}>Sign Out</button>);
+    return (<Link href='/'><button onClick={signOut}>Sign Out</button></Link>);
 }
+
+
+export default NavBar;
