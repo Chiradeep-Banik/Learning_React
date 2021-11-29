@@ -1,11 +1,9 @@
-import { auth, firestore, provider } from '../lib/firebase';
-import { signInWithPopup } from 'firebase/auth'
+import { auth, provider } from '../lib/firebase';
+import { signInWithPopup } from 'firebase/auth';
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import type { NextPage } from 'next';
 import HeadTag from '../components/head';
-import { doc, setDoc } from '@firebase/firestore/lite';
-import { FirestoreData } from '.';
 
 const EnterPage: NextPage = () => {
     let { user, userName } = useContext(UserContext);
@@ -26,16 +24,6 @@ function SignInButton() {
         await signInWithPopup(auth, provider);
         setUser(auth.currentUser);
         setUserName(auth.currentUser.displayName);
-        if (auth.currentUser !== null) {
-            let users = doc(firestore, `users/${auth.currentUser.displayName}`);
-            const userData: FirestoreData = {
-                Id: auth.currentUser.uid,
-                username: auth.currentUser.displayName,
-                photo: auth.currentUser.photoURL,
-                user: auth.currentUser
-            };
-            await setDoc(users, userData);
-        }
     };
 
     return (<button className='btn-google' onClick={signInWithGoogle}>
