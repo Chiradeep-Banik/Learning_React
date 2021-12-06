@@ -17,7 +17,7 @@ const AdminPostsPage: NextPage = () => {
     }
     const createArticle = async () => {
 
-        if (article.length > 0) {
+        if (article.length > 0 && user && user.uid) {
             let articles = doc(firestore, `articles/${user.uid}`);
             await setDoc(articles, {
                 article
