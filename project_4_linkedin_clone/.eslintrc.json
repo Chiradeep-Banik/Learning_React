@@ -1,0 +1,23 @@
+{
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"semi": [
+			"error",
+			"always"
+		],
+		"comma-dangle": [
+			"error",
+			{
+				"arrays": "always",
+				"objects": "always",
+				"imports": "always",
+				"exports": "always"
+			}
+		],
+		"camelcase": "error",
+		"indent": [
+			"error",
+			"tab"
+		]
+	}
+}
