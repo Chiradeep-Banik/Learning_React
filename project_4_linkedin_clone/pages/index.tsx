@@ -1,30 +1,30 @@
 import type { NextPage, } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import home from '../styles/home.module.scss';
+import landing from '../styles/landing.module.scss';
 
-const Home: NextPage = () => {
+const Landing: NextPage<{  }> = ({  }) => {
 	return (
-		<div className={home.container}>
-			<div className={home.nav}>
+		<div className={landing.container}>
+			<div className={landing.nav}>
 				<Link href='/' passHref={true}>
 					<Image src="/images/login-logo.svg" alt="logo" width="135px" height="34px" />
 				</Link>
 				<div>
-					<button className={home.joinNowBtn}>Join Now</button>
-					<button className={home.signInBtn}>Sign In</button>
+					<button className={landing.joinNowBtn}>Join Now</button>
+					<button className={landing.signInBtn}>Sign In</button>
 				</div>
 			</div>
-			<div className={home.hero}>
-				<div className={home.heroText}>
+			<div className={landing.hero}>
+				<div className={landing.heroText}>
 					<span>Millions of jobs and people hiring</span>
 				</div>
-				<div className={home.heroImage}>
+				<div className={landing.heroImage}>
 					<Image src="/images/login-hero.svg" alt="hero-image" width="700px" height="670px" />
 				</div>
 			</div>
-			<div className={home.google}>
-				<button className={home.googleBtn}>
+			<div className={landing.google}>
+				<button className={landing.googleBtn}>
 					<Image src='/images/google.svg' alt="google" width="50px" height="50px" />
 					<span>Sign In With Google</span>
 				</button>
@@ -33,4 +33,4 @@ const Home: NextPage = () => {
 	);
 };
 
-export default Home;
+export default Landing;

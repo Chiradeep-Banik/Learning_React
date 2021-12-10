@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps, }: AppProps) {
 		<>
 			<Component {...pageProps} />
 			<Head>
-				<title>LinkedIN clone</title>
+				<title>LinkedIn clone</title>
 				<link rel="icon" type="image/png" href="/linkedin.png" />
 			</Head>
 		</>

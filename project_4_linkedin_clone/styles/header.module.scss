@@ -1,0 +1,25 @@
+.container{
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: solid 1px #e5e5e5;
+    position: fixed;
+    z-index: 100;
+    // padding: 0px 24px;
+    height: 70px;
+
+    .content{
+        display:flex;
+        align-items: flex-start;
+        margin: 0px auto;
+        max-width: 1028px;
+        min-height: 100%;
+        .logo{
+            // margin-right: 8px;
+            cursor: pointer;
+    
+        }
+    }
+
+}
