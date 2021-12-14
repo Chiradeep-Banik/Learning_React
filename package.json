@@ -14,6 +14,12 @@
   "dependencies": {
     "create-next-app": "^12.0.7",
     "firebase-tools": "^9.22.0",
+    "next-crash-course": "file:next-crash-course",
+    "project_0": "file:project_0",
+    "project_1": "file:project_1",
+    "project_2-bare-bone": "file:project_2-bare-bone",
+    "project_3-fireship.io-course": "file:project_3-fireship.io-course",
+    "project_4_linkedin_clone": "file:project_4_linkedin_clone",
     "serve": "^13.0.2"
   }
 }

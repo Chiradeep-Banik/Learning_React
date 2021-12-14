@@ -1,0 +1,9 @@
+services:
+  learning-react:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - REACT_APP_API_URL='http://www.omdbapi.com/?apikey=46d0f5da&'
+    entrypoint: bash
+    stdin_open: true
